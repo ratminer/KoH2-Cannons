@@ -1,0 +1,96 @@
+def Cannon : SiegeEquipment
+{
+    name = "Cannon"
+
+    description = "Massive cannons capable of wreaking havoc to any types of opposing force. Firepower of such magnitude puts fear into the hearts of all who stand before it."
+
+    salvo_def = "CannonSalvo"
+    model = "Assets/Units/BV_Ram/BV_Ram.prefab" //GUID:80c841c513f833c4ea25283b8ce14c26
+    icon = "Assets/Icons/cannon.png:cannon#1" //GUID:bfe320789668afc4c80cb8355db68093
+
+	// sounds
+	hire_sound = "event:/sound_effects/interaction/siege/catapult"
+	select_sound = "event:/sound_effects/interaction/siege/catapult"
+	hire_failed_sound = "event:/sound_effects/interaction/unavailable"
+	dying_sound = "event:/sound_effects/battleview/siege_equipment/destroyed/catapult"
+	marching_sound = "event:/sound_effects/battleview/siege_equipment/moving/catapult"
+	running_sound = marching_sound
+	sprinting_sound = marching_sound
+	charging_sound = marching_sound
+	VO_role = null
+
+	counter = ["WallsAndTowers","Ranged"]
+	countered = ["Trebuchet"]
+
+    secondary_type = "Ranged"
+
+    // ranged damage mod
+    CTH_shoot_mod = 200
+    salvo_capacity = 100
+
+    // reload time
+    shoot_interval = 10
+
+	available = true
+	selection_radius = 1.25
+	radius = 4
+	turn_speed = 45
+	siege_damage = 3
+	max_health = 1
+	walk_anim_speed = 0.8
+    battle_scale = 0.25
+
+    siege_damage = 100
+
+    require
+    {
+        Artillery
+    }
+
+    size = 1
+    size_mul = 1 // multiplier for size
+
+    default_troop_spacing = 20
+    min_troop_spacing = 10
+    max_troop_spacing = 40
+}
+
+def CannonSalvo : SalvoData
+{
+    // arrow_model
+    arrow_model = "Assets/Units/BV_Trebuchet_01/Rock_00.prefab" //GUID:54ef26bc8a27e8e419efe83386cf90b1
+    // on impact
+    projectile_particles = "Assets/Units/BV_Trebuchet_01/CollisionExplosion 1.prefab" //GUID:c9c26db812f72db40b790f0419585cc6
+    // while flying
+    prefab particles = "Assets/Units/BV_Trebuchet_01/Fireball.prefab" //GUID:d1f77a8c5a6a30749b5fbcd9a3e3f3ad
+    // arrow trail
+    arrow_trail_texture = "Assets/Units/Arrow/ParticleFirecloud.psd" //GUID:18b40abc9100cdb4c9f247918ad1b10b
+
+    draw_after_landing = false
+
+    // sounds
+    arrow_shoot_sound_effect = "event:/sound_effects/battleview/siege_equipment/projectile/trebuchet"
+    arrow_impact_sound_effect = "event:/sound_effects/battleview/siege_equipment/impact/trebuchet"
+    reload_sound_effect = "event:/sound_effects/battleview/siege_equipment/reloading/trebuchet"
+    release_sound_effect = "event:/sound_effects/battleview/siege_equipment/release/trebuchet"
+
+    projectile_radius = 2
+
+    // range
+    min_shoot_range = 20
+    max_shoot_range = 200
+    min_shoot_speed = 600
+
+    splash_damage = true
+    explosion_force = 0 // knockback effect
+
+    // projectile weight
+    gravity = 1000
+
+    float shoot_height = 2
+
+    can_hit_fortification = true
+
+    // random effect to reload time
+    random_shoot_time_offset = 0
+}
